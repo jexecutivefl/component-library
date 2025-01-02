@@ -1,0 +1,53 @@
+.container {
+    padding: 16px;
+    border: 1px solid #ccc;
+    background-color: white;
+    transition: box-shadow 0.3s ease, border-radius 0.3s ease;
+    word-wrap: break-word; /* Forces long words to break */
+    overflow-wrap: break-word; /* Ensures text wraps inside */
+    white-space: normal; /* Allows text to wrap onto multiple lines */
+    overflow: hidden; /* Prevents content from spilling out */
+}
+
+/* Width styles */
+.widthSmall {
+    width: 300px;
+}
+
+.widthMedium {
+    width: 500px;
+}
+
+.widthLarge {
+    width: 700px;
+}
+
+.widthXtraLarge {
+    width: 1200px;
+}
+
+/* Shadow styles */
+.shadow1 {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shadow2 {
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.shadow3 {
+    box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Radius styles */
+.radiusSmall {
+    border-radius: 4px;
+}
+
+.radiusMedium {
+    border-radius: 8px;
+}
+
+.radiusLarge {
+    border-radius: 16px;
+}
