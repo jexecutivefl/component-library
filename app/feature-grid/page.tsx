@@ -11,7 +11,7 @@ const leftFeatures = [
       title: 'SERVICES START AT 2.99%',
       description: 'Find a service plan that fits your needs. Fully integrated and customizable.',
       imageSrc: '/gears.png',
-      imageAlt: 'Gears Icon',
+      imageAlt: 'SERVICES START AT 2.99%',
       imageWidth: 62,
       imageHeight: 58,
     },
