@@ -1,10 +1,12 @@
 'use client'
 
+import { useState } from "react";
 import CardOne from "../cards/components/CardOne/CardOne";
 import TwoColumnRow from "../row-layouts/TwoColumnRow/TwoColumnRow";
 import MainButton from "./components/MainButton/MainButton";
 
 export default function Buttons() {
+    const [copySuccess, setCopySuccess] = useState('')
     function handleClick() {
         console.log('clicked')
     }
@@ -97,9 +99,22 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
     )
 }
     `
+
+    function handleCopyCode(code){
+        navigator.clipboard
+        .writeText(code)
+        .then(()=>{
+            setCopySuccess('Copied');
+            setTimeout(() => setCopySuccess(''), 2000)
+        }).catch(()=>{
+            setCopySuccess('Failed to Copy');
+            setTimeout(() => setCopySuccess(''), 2000)
+        })
+    }
     return (
         <>
             <h1>Buttons</h1>
+            <h3>MainButton</h3>
             <MainButton
                 text={'Contact Us'}
                 handleClick={handleClick}
@@ -107,8 +122,8 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
             <TwoColumnRow>
                 <CardOne
                     width={'lg'}
+                    title={'Typescript Code'}
                 >
-            <h3>Button Code</h3>
                     <pre
                         style={{
                             backgroundColor: '#f4f4f4',
@@ -120,12 +135,13 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
                         }}
                     >
                         <code>{buttonCode}</code>
+                        <MainButton handleClick={()=>handleCopyCode(buttonCode)} text={'copy code'}/>
                     </pre>
                 </CardOne>
                 <CardOne
                     width={'lg'}
+                    title={'CSS'}
                 >
-                <h3>Button Css</h3>
                     <pre
                         style={{
                             backgroundColor: '#f4f4f4',
@@ -136,11 +152,15 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
                             fontSize: '14px',
                         }}
                     >
-                        <code>{buttonCSS}</code>
+                        <code>
+                            {buttonCSS}
+                            <MainButton handleClick={()=>handleCopyCode(buttonCSS)} text={'copy code'}/>
+                        </code>
                     </pre>
                 </CardOne>
             </TwoColumnRow>
-
+            {copySuccess && <p style={{ color: 'green', marginTop: '0.5rem' }} >{copySuccess}</p>}
         </>
     )
 }
+

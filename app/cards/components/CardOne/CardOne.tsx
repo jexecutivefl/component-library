@@ -7,10 +7,11 @@ type CardOneProps = {
     width?: string;
     shadow?: string;
     radius?: string;
+    title?: string;
     children: React.ReactNode;
 }
 
-export default function CardOne({width='sm', shadow='1', radius='sm', children}: CardOneProps) {
+export default function CardOne({width='sm', shadow='1', radius='sm', title, children}: CardOneProps) {
     const [widthStyle, setWidthStyle] = useState<string>('');
     const [shadowStyle, setShadowStyle] = useState<string>('');
     const [radiusStyle, setRadiusStyle] = useState<string>('');
@@ -65,8 +66,11 @@ export default function CardOne({width='sm', shadow='1', radius='sm', children}:
     }, [width, shadow, radius]);
 
     return (
-        <div className={`${styles.container} ${widthStyle} ${shadowStyle} ${radiusStyle}`}>
-            {children}
+        <div>
+            <h3>{title}</h3>
+            <div className={`${styles.cardContainer} ${widthStyle} ${shadowStyle} ${radiusStyle}`}>
+                {children}
+            </div>
         </div>
     )
 }
