@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import CardOne from "../cards/components/CardOne/CardOne";
-import TwoColumnRow from "../row-layouts/TwoColumnRow/TwoColumnRow";
+import TwoColumnRow from "../../components/TwoColumnRow/TwoColumnRow";
 import MainButton from "./components/MainButton/MainButton";
 
 export default function Buttons() {
