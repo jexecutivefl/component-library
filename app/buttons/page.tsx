@@ -11,6 +11,54 @@ export default function Buttons() {
         console.log('clicked')
     }
 
+    function LeftSide() {
+        return (
+            <CardOne
+                width={'lg'}
+                title={'Typescript Code'}
+            >
+                <pre
+                    style={{
+                        backgroundColor: '#f4f4f4',
+                        padding: '10px',
+                        borderRadius: '5px',
+                        overflowX: 'auto',
+                        fontFamily: 'monospace',
+                        fontSize: '14px',
+                    }}
+                >
+                    <code>{buttonCode}</code>
+                    <MainButton handleClick={() => handleCopyCode(buttonCode)} text={'copy code'} />
+                </pre>
+            </CardOne>
+        )
+    }
+
+    function RightSide() {
+        return (
+            <CardOne
+            width={'lg'}
+            title={'CSS'}
+        >
+            <pre
+                style={{
+                    backgroundColor: '#f4f4f4',
+                    padding: '10px',
+                    borderRadius: '5px',
+                    overflowX: 'auto',
+                    fontFamily: 'monospace',
+                    fontSize: '14px',
+                }}
+            >
+                <code>
+                    {buttonCSS}
+                    <MainButton handleClick={() => handleCopyCode(buttonCSS)} text={'copy code'} />
+                </code>
+            </pre>
+        </CardOne>
+        )
+    }
+
     const buttonCSS = `
 .btn {
     padding: 10px 20px;
@@ -100,16 +148,16 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
 }
     `
 
-    function handleCopyCode(code){
+    function handleCopyCode(code) {
         navigator.clipboard
-        .writeText(code)
-        .then(()=>{
-            setCopySuccess('Copied');
-            setTimeout(() => setCopySuccess(''), 2000)
-        }).catch(()=>{
-            setCopySuccess('Failed to Copy');
-            setTimeout(() => setCopySuccess(''), 2000)
-        })
+            .writeText(code)
+            .then(() => {
+                setCopySuccess('Copied');
+                setTimeout(() => setCopySuccess(''), 2000)
+            }).catch(() => {
+                setCopySuccess('Failed to Copy');
+                setTimeout(() => setCopySuccess(''), 2000)
+            })
     }
     return (
         <>
@@ -119,46 +167,10 @@ export default function MainButton({ size = 'md', text = 'Click Me!', color = 'b
                 text={'Contact Us'}
                 handleClick={handleClick}
             />
-            <TwoColumnRow>
-                <CardOne
-                    width={'lg'}
-                    title={'Typescript Code'}
-                >
-                    <pre
-                        style={{
-                            backgroundColor: '#f4f4f4',
-                            padding: '10px',
-                            borderRadius: '5px',
-                            overflowX: 'auto',
-                            fontFamily: 'monospace',
-                            fontSize: '14px',
-                        }}
-                    >
-                        <code>{buttonCode}</code>
-                        <MainButton handleClick={()=>handleCopyCode(buttonCode)} text={'copy code'}/>
-                    </pre>
-                </CardOne>
-                <CardOne
-                    width={'lg'}
-                    title={'CSS'}
-                >
-                    <pre
-                        style={{
-                            backgroundColor: '#f4f4f4',
-                            padding: '10px',
-                            borderRadius: '5px',
-                            overflowX: 'auto',
-                            fontFamily: 'monospace',
-                            fontSize: '14px',
-                        }}
-                    >
-                        <code>
-                            {buttonCSS}
-                            <MainButton handleClick={()=>handleCopyCode(buttonCSS)} text={'copy code'}/>
-                        </code>
-                    </pre>
-                </CardOne>
-            </TwoColumnRow>
+            <TwoColumnRow
+                left={<LeftSide/> }
+                right={<RightSide/>}
+            />
             {copySuccess && <p style={{ color: 'green', marginTop: '0.5rem' }} >{copySuccess}</p>}
         </>
     )
